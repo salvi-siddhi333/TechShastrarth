@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechShastrarth® - Enabling Digital Bharat</title> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+/*            background: rgba(107, 31, 31, 0.95);*/
+            background: linear-gradient(135deg, #8b2f2f 0%, #6b1f1f 50%, #4a1515 100%);;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 0;
+            background: rgba(107, 31, 31, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInLeft 0.8s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #f5f5f5;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            animation: fadeInRight 0.8s ease;
+        }
+
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #8b2f2f 0%, #6b1f1f 50%, #4a1515 100%);
+            max-width: 100%;
+            color: white;
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="rgba(212,175,55,0.1)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            line-height: 1.8;
+            color: #f5f5f5;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .highlight-box:nth-child(1) { animation-delay: 0.3s; }
+        .highlight-box:nth-child(2) { animation-delay: 0.4s; }
+        .highlight-box:nth-child(3) { animation-delay: 0.5s; }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4d03f);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .highlight-box:hover::before {
+            transform: scaleX(1);
+        }
+
+        .highlight-box:hover::after {
+            opacity: 1;
+        }
+
+        .highlight-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            background: linear-gradient(135deg, #6b1f1f, #8b2f2f);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 4px 15px rgba(107, 31, 31, 0.3);
+            transition: all 0.3s;
+        }
+
+        .highlight-box:hover .highlight-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .highlight-icon svg {
+            width: 45px;
+            height: 45px;
+            fill: #d4af37;
+        }
+
+        .highlight-box h3 {
+            color: #6b1f1f;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .highlight-box p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .section-alt {
+            background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+            margin: 0;
+            max-width: 100%;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .section-dark {
+            background: linear-gradient(135deg, #6b1f1f 0%, #8b2f2f 50%, #6b1f1f 100%);
+            color: white;
+            margin: 0;
+            max-width: 100%;
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #6b1f1f;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            border-radius: 2px;
+        }
+
+        .section-dark h2 {
+            color: #d4af37;
+        }
+
+        /* About Content */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left-color: #d4af37;
+        }
+
+        .about-card h3 {
+            color: #6b1f1f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .edge-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .edge-list li {
+            padding: 0.7rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: #555;
+            transition: all 0.3s;
+        }
+
+        .edge-list li:hover {
+            color: #6b1f1f;
+            padding-left: 3rem;
+        }
+
+        .edge-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .edge-list li:hover:before {
+            transform: scale(1.2);
+        }
+
+        /* Founder Message */
+        .founder-message {
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            padding: 3.5rem;
+            border-left: 6px solid #d4af37;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+            font-style: italic;
+            line-height: 2;
+            color: #444;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .founder-message:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            transform: scale(1.01);
+        }
+
+        .founder-message::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(212, 175, 55, 0.2);
+            font-family: Georgia, serif;
+        }
+
+        .founder-name {
+            margin-top: 2rem;
+            font-weight: 600;
+            color: #6b1f1f;
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        /* Solutions Grid */
+        .solutions-intro {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: #f5f5f5;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .solution-card:hover::before {
+            left: 100%;
+        }
+
+        .solution-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .solution-card h3 {
+            color: #6b1f1f;
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .solution-number {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .solution-card h4 {
+            color: #d4af37;
+            margin-bottom: 1.2rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .solution-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Value Table */
+        .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* automatically fit cards */
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.why-card {
+    display: flex;
+    flex-direction: column; /* stack content vertically */
+    align-items: center;    /* center horizontally */
+    justify-content: flex-start; /* start from top */
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* center text */
+}
+
+
+/*        .why-grid {
+            display: grid;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }*/
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, #d4af37, #f4d03f);
+            transition: height 0.4s;
+        }
+
+        .why-card:hover::before {
+            height: 100%;
+        }
+
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6b1f1f, #8b2f2f);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(107, 31, 31, 0.3);
+            transition: all 0.3s;
+        }
+
+        .why-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #d4af37;
+        }
+
+        .why-card:hover .why-icon {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .why-content h3 {
+            color: #6b1f1f;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .challenge {
+            background: linear-gradient(135deg, #ffe5e5, #ffd5d5);
+            padding: 1rem;
+            border-radius: 8px;
+            color: #6b1f1f;
+            font-weight: 500;
+            margin: 1rem 0;
+            border-left: 3px solid #8b2f2f;
+        }
+
+        .arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: #d4af37;
+            margin: 1rem 0;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .solution {
+            background: linear-gradient(135deg, #fff8e5, #fff0cc);
+            padding: 1rem;
+            border-radius: 8px;
+            color: #6b1f1f;
+            font-weight: 500;
+            margin: 1rem 0;
+            border-left: 3px solid #d4af37;
+        }
+
+        .value-badge {
+            background: linear-gradient(135deg, #6b1f1f, #8b2f2f);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(107, 31, 31, 0.3);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 3rem;
+        }
+
+        .value-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .value-table thead {
+            background: linear-gradient(135deg, #6b1f1f, #8b2f2f);
+            color: white;
+        }
+
+        .value-table th {
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .value-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .value-table tbody tr {
+            transition: all 0.3s;
+        }
+
+        .value-table tbody tr:hover {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.05), transparent);
+            transform: scale(1.01);
+        }
+
+        .value-table tbody tr:hover td {
+            color: #6b1f1f;
+            font-weight: 500;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 3.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 3rem auto;
+            text-align: center;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #444;
+            line-height: 1.9;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .testimonial::before {
+            content: '★★★★★';
+            display: block;
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+
+.client-logos {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 3rem;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.1), transparent);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.client-logos h3 {
+  color: #6b1f1f;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+/* ✅ Smooth horizontal scroll container */
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll-left 30s linear infinite;
+}
+
+/* ✅ Individual logo cards (your same style) */
+.client-logo-item {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.client-logo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* ✅ Logo image size */
+.client-logo-item img {
+  width: 140px;
+  height: 80px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.client-logo-item img:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* ✅ The key to smooth infinite scrolling */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Optional: pause on hover */
+.client-logos:hover .logo-track {
+  animation-play-state: paused;
+}
+
+
+/* ✅ Logo cards (your original style kept) */
+.client-logo-item {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  text-align: center;
+  flex-shrink: 0; /* prevents shrinking when many logos are added */
+}
+
+.client-logo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+}
+
+/* ✅ Uniform logo image sizing */
+.client-logo-item img {
+  width: 140px;
+  height: 80px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.client-logo-item img:hover {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* ✅ Continuous horizontal scroll animation */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Optional: pause when hovered */
+.client-logos:hover .logo-track {
+  animation-play-state: paused;
+}
+
+        /* Contact Section */
+        .contact-wrapper {
+            max-width: 900px;
+            margin: 3rem auto 0;
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent);
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+            transition: all 0.3s;
+        }
+
+        .contact-row:hover {
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.1), transparent);
+            transform: translateX(5px);
+        }
+
+        .contact-icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6b1f1f, #8b2f2f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(107, 31, 31, 0.3);
+        }
+
+        .contact-icon-box svg {
+            width: 30px;
+            height: 30px;
+            fill: #d4af37;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            font-size: 1.2rem;
+            color: #6b1f1f;
+            font-weight: 600;
+        }
+
+        .contact-value a {
+            color: #6b1f1f;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: #d4af37;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f4d03f);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .contact-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-item h3 {
+            color: #6b1f1f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-item p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #6b1f1f;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        footer p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .highlight-box,
+            .solution-card,
+            .contact-item {
+                padding: 2rem;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #f4d03f);
+            z-index: 10000;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="TS.png" alt="Logo" width="45" height="45">
+                    </div>
+                    <span>TechShastrarth®</span>
+                </div>
+                <div class="tagline">Enabling Digital Bharat</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#founder">Founder</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Driving Business Growth with Strategy, Process & ERP Advisory</h1>
+            <p>At TechShastrarth®, we help MSMEs & Mid-Size enterprises achieve operational excellence and digital transformation through strategic guidance, optimized workflows, and unbiased ERP advisory.</p>
+            
+            <div class="highlights">
+                <div class="highlight-box">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-4.52 0-8.17-3.58-8.17-8V8.3L12 4.18l8.17 4.12V12c0 4.42-3.65 8-8.17 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                    </div>
+                    <h3>Vendor-Neutral ERP Advisory</h3>
+                    <p>Objective, unbiased ERP guidance tailored to your business goals and growth roadmap.</p>
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Process Optimization</h3>
+                    <p>Design efficient, future-ready workflows that enhance productivity and scalability.</p>
+                </div>
+                <div class="highlight-box">
+                    <div class="highlight-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                        </svg>
+                    </div>
+                    <h3>Governance & Oversight</h3>
+                    <p>Governance framework & PMO Setup for smooth, accountable implementation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about">
+        <h2>About Us</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Who We Are</h3>
+                <p>We act as a trusted partner and strategic advisor, providing vendor-neutral guidance on ERP systems and expert advice on business processes to help organizations optimize operations and align technology with strategy.</p>
+            </div>
+            <div class="about-card">
+                <h3>Vision</h3>
+                <p>Enabling Digital Bharat through Smart Processes and Scalable Operations</p>
+            </div>
+            <div class="about-card">
+                <h3>Mission</h3>
+                <p>At TechShastrarth®, we help MSMEs & Mid-Size enterprises achieve scalable growth through smart strategies, optimized processes, and technology-driven insights, powered by digital transformation.</p>
+            </div>
+        </div>
+        
+        <div class="about-card" style="margin-top: 2rem;">
+            <h3>Our Edge</h3>
+            <ul class="edge-list">
+                <li>Over two decades in technology leadership and strategy</li>
+                <li>Expertise in process architecture, ERP strategy & digital transformation</li>
+                <li>Vendor-agnostic evaluations and fit-gap analysis</li>
+                <li>Proven governance frameworks ensuring accountability and results</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Founder Message -->
+    <section id="founder" class="section-alt">
+        <h2>Message from the Founder</h2>
+        <div class="founder-message">
+            <p>In today's fast-paced digital landscape, technology alone cannot drive transformation — structured processes and strong governance are what ensure its success. Over the past two decades, I've witnessed numerous digital initiatives fail, not due to lack of innovation, but due to the absence of process clarity and accountability.</p>
+            
+            <p>At TechShastrarth®, we believe that every digital transformation journey must start with a well-architected process foundation — one that reflects how the business truly operates, not how technology dictates it. Governance then ensures that these processes are followed, monitored, and continuously improved.</p>
+            
+            <p>Our mission is simple yet powerful — to help organizations build process maturity, institutionalize governance, and enable leaders to make informed, data-driven decisions. This is how enterprises evolve from operational firefighting to strategic foresight.</p>
+            
+            <p>Digital transformation is not about deploying an ERP or adopting the latest tool — it's about bringing order, clarity, and discipline to how business and technology work together.</p>
+            
+            <p>That's the philosophy behind TechShastrarth® — "Enabling Digital Bharat through Smart Processes and Scalable Operations."</p>
+            
+            <div class="founder-name">— Amit Shah<br>Founder & CEO, TechShastrarth®</div>
+        </div>
+    </section>
+
+    <!-- Our Solutions -->
+    <section id="solutions" class="section-dark">
+        <h2>Our Solutions</h2>
+        <p class="solutions-intro">Helping businesses build structured, scalable, and technology-driven operations.</p>
+        
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <h3><span class="solution-number">1</span> Process Audit & Optimization</h3>
+                <h4>Unlock efficiency by transforming the way your business operates.</h4>
+                <p>We deep-dive into your current ("As-Is") workflows, identify bottlenecks, and design streamlined ("To-Be") processes that enhance productivity and scalability. Our comprehensive audit reports and SOPs lay the foundation for structured, process-driven growth.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3><span class="solution-number">2</span> Targeted Process Digitization</h3>
+                <h4>Experience the impact of automation — before you commit.</h4>
+                <p>Through our "Demo it to Believe it" approach, we digitize select key workflows to showcase measurable value, boost confidence, and help you visualize the future of your operations.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3><span class="solution-number">3</span> ERP Advisory & Selection</h3>
+                <h4>Choose the right ERP — without vendor bias.</h4>
+                <p>We conduct neutral evaluations, fit-gap analyses, and provide data-driven recommendation reports to ensure your ERP investment aligns perfectly with your business goals and growth roadmap.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3><span class="solution-number">4</span> Implementation Oversight & PMO Setup</h3>
+                <h4>Deliver transformation with confidence.</h4>
+                <p>From governance frameworks and real-time dashboards to risk mitigation and progress tracking — we help you stay in control of your ERP implementation, ensuring timelines, quality, and ROI are met.</p>
+            </div>
+            
+            <div class="solution-card">
+                <h3><span class="solution-number">5</span> ERP Center of Excellence</h3>
+                <h4>Keep your ERP journey strong — long after go-live.</h4>
+                <p>We help you establish an ERP Center of Excellence (CoE) that embeds governance, compliance, and internal capability-building — ensuring continuous improvement and sustainable digital maturity.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us">
+        <h2>Why Choose Us</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; font-size: 1.15rem; color: #555;">Transform your business challenges into growth opportunities with our proven expertise</p>
+        
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <div class="why-content">
+                    <h3>ERP Alignment Challenge</h3>
+                    <p class="challenge">ERP not aligned to business goals</p>
+                    <div class="arrow">→</div>
+                    <p class="solution">Vendor-neutral ERP strategy</p>
+                    <div class="value-badge">✓ ERP delivers business outcomes</div>
+                </div>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                    </svg>
+                </div>
+                <div class="why-content">
+                    <h3>Efficiency Bottlenecks</h3>
+                    <!-- <p class="challenge">Inefficient processes holding you back</p> -->
+                    <p class="challenge">Processes slowing performance</p>
+                    <div class="arrow">→</div>
+                    <p class="solution">Process optimization & restructuring</p>
+                    <div class="value-badge">✓ Improved efficiency and scalability</div>
+                </div>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                </div>
+                <div class="why-content">
+                    <h3>Project<br> Overruns</h3>
+                    <p class="challenge">Delays and budget overruns</p>
+                    <div class="arrow">→</div>
+                    <p class="solution">Governance & PMO oversight</p>
+                    <div class="value-badge">✓ On-time, on-budget delivery</div>
+                </div>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                    </svg>
+                </div>
+                <div class="why-content">
+                    <h3>Adoption <br> Issues</h3>
+                    <p class="challenge">Low user adoption rates</p>
+                    <div class="arrow">→</div>
+                    <p class="solution">Comprehensive training & engagement</p>
+                    <div class="value-badge">✓ Higher ROI and smoother adoption</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="section-alt">
+        <h2>Our Clients</h2>
+        <div class="testimonial">
+            "TechShastrarth® helped us streamline operations, define clear governance, and achieve full ERP adoption within timeline and budget."
+        </div>
+        <div class="client-logos">
+          <h3>Trusted by Leading Enterprises</h3>
+          <div class="logo-track">
+            <div class="client-logo-item">
+              <img src="c1.png" alt="WASCO">
+            </div>
+            <div class="client-logo-item">
+              <img src="c2.png" alt="StarOrigin Pvt Ltd">
+            </div>
+            <div class="client-logo-item">
+              <img src="c4.png" alt="Brand Foundry">
+            </div>
+            <div class="client-logo-item">
+              <img src="c6.png" alt="Shah & Anchor Kutchhi Engineering College">
+            </div>
+            <div class="client-logo-item">
+              <img src="c3.jpg" alt="Mannasrekha Enterprises">
+            </div>
+            <div class="client-logo-item">
+              <img src="c5.png" alt="NSR Libya Technical Systems">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-dark">
+        <h2>Let's Discuss Your Process Transformation Journey</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p><a href="mailto:contact@techshastrarth.com">contact@techshastrarth.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>🌐 Website</h3>
+                <p><a href="http://www.techshastrarth.com" target="_blank">www.techshastrarth.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>📍 Location</h3>
+                <p>Mumbai, India</p>
+            </div>
+        </div>
+    </section>
