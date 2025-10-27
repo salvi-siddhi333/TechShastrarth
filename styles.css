@@ -399,7 +399,8 @@ h2::after {
 }
 
 .section-dark h2 {
-    color: #d4af37;
+    /* color: #d4af37; */
+   color: white;
 }
 
 /* About Content */
