@@ -376,8 +376,8 @@ section {
 h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #6b1f1f;
-/*    color: white;*/
+    /*color: #6b1f1f;*/
+    color: white;
     text-align: center;
     font-weight: 700;
     position: relative;
