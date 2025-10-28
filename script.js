@@ -21,6 +21,43 @@ if (navbar) {
     });
 }
 
+// //Navbar current page effect 
+// document.addEventListener("DOMContentLoaded", () => {
+//   // Get current page name (e.g., 'about.html')
+//   const currentPage = window.location.pathname.split("/").pop();
+
+//   // Select all navigation links
+//   const navLinks = document.querySelectorAll("nav a");
+
+//   // Loop through each link
+//   navLinks.forEach(link => {
+//     // If the href matches current page, add the 'active' class
+//     if (link.getAttribute("href") === currentPage) {
+//       link.classList.add("active");
+//     }
+//   });
+// });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+  // Select both desktop and mobile links
+  const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu ul li a");
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href === currentPage || (href === "index.html" && currentPage === "")) {
+      link.classList.add("active");
+    }
+  });
+});
+
+
+
+
+
+
 // Mobile Menu Toggle - Enhanced
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
