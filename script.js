@@ -152,3 +152,18 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 });
+
+
+document.querySelectorAll('.acc-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    // If you want only one open at a time, close others:
+    document.querySelectorAll('.acc-btn').forEach(b=>{ b.setAttribute('aria-expanded','false'); b.nextElementSibling.hidden = true; });
+    if(!expanded){
+      btn.setAttribute('aria-expanded','true');
+      btn.nextElementSibling.hidden = false;
+    }
+  });
+});
+
+

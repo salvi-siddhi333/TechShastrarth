@@ -436,6 +436,46 @@ h2::after {
 
 /* About Content */
 
+.core-values-accordion { padding:1.5rem; background:#fff; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+.core-values-accordion h3 { text-align:center; color:#7b1b1b; margin-bottom:1rem; }
+
+.accordion .acc-item { border-top:1px solid #eee; }
+.acc-btn {
+  width:100%;
+  text-align:left;
+  padding:0.65rem 0.8rem;
+  background:transparent;
+  border:0;
+  font-weight:700;
+  color:#4a1010;
+  font-size:0.98rem;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.acc-btn:after { content:'+'; font-weight:700; color:#b06b2e; }
+.acc-btn[aria-expanded="true"]:after { content:'−'; }
+
+.acc-panel { padding:0.6rem 0.8rem 1rem 0.8rem; color:#333; font-size:0.92rem; line-height:1.55; }
+@media (min-width:992px) {
+  .core-values-accordion { max-height:420px; overflow:auto; }  
+}
+
+.mission-accordion {
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.mission-accordion h3 {
+  text-align: center;
+  color: #7b1b1b;
+  margin-bottom: 1rem;
+}
+
+
+
 #about {
     background: linear-gradient(135deg, #8b2f2f 0%, #6b1f1f 50%, #4a1515 100%);
     max-width: 100%;
@@ -472,6 +512,7 @@ h2::after {
     color: #6b1f1f;
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .about-card p {
