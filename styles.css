@@ -51,12 +51,13 @@ nav.scrolled {
     animation: fadeInLeft 0.8s ease;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1.2rem;
 }
 
 .logo-icon {
     padding-top: 20px;
     padding-right: 20px;
+    padding-left: 30px;
     width: 40px;
     height: 40px;
 /*    background: linear-gradient(135deg, #d4af37, #f4d03f);*/
@@ -74,7 +75,8 @@ nav.scrolled {
     color: #f5f5f5;
     font-weight: 300;
     letter-spacing: 0.5px;
-    padding-left: 50px;
+    padding-left: 70px;
+
 }
 
 .nav-links {
@@ -213,6 +215,8 @@ nav.scrolled {
     border-bottom: 3px solid #E0B240;
     font-weight: 600;
   }
+
+
 
 /* Hero Section */
 .hero {
@@ -553,6 +557,127 @@ h2::after {
     transform: scale(1.2);
 }*/
 
+/* Submenu Styles */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  background: #401212;
+  list-style: none;
+  padding: 0.4rem 0;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  transition: all 0.25s ease;
+}
+
+.submenu li a {
+  display: block;
+  color: #d4af37;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+.submenu li a:hover {
+  background: rgba(212, 175, 55, 0.15);
+  padding-left: 1.3rem;
+  color: #fff;
+}
+
+/* Show submenu on hover (desktop) */
+.has-submenu:hover > .submenu {
+  display: block;
+}
+
+/* --- Mobile submenu improvements --- */
+
+/* row wrapper inside mobile menu so text and toggle align */
+.mobile-menu .mobile-link-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/* hide the desktop 'hover' caret (you already removed it) — keep for safety */
+.has-submenu > a::after { content: none; }
+
+/* submenu basics for mobile */
+.mobile-menu .submenu {
+  display: none; /* toggled by JS */
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0.25rem 0 0.5rem 0.6rem; /* left padding for indentation */
+  background: rgba(64,18,18,0.95);
+  border-radius: 6px;
+}
+
+/* make submenu items nicely tappable */
+.mobile-menu .submenu li a {
+  display: block;
+  padding: 0.55rem 0.6rem;
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+/* subtle hover/active for mobile items */
+.mobile-menu .submenu li a:hover,
+.mobile-menu .submenu li a:focus {
+  background: rgba(212,175,55,0.12);
+  color: #d4af37;
+  outline: none;
+}
+
+/* toggle button (mobile only) */
+.submenu-toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #d4af37;
+  font-weight: 700;
+  font-size: 1.05rem;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s;
+}
+
+/* small press visual */
+.submenu-toggle:active { transform: scale(0.96); }
+
+/* toggle button hover in case user uses pointer on mobile emulator */
+.submenu-toggle:hover { background: rgba(212,175,55,0.06); }
+
+/* when expanded, show minus symbol */
+.has-submenu.mobile-only.active > .mobile-link-row .submenu-toggle { content: "−"; }
+
+/* we'll swap text with JS; keep visual alignment */
+.mobile-menu .has-submenu .mobile-link-row a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 600;
+  padding-right: 0.5rem; /* ensures space between text and button */
+}
+
+/* ensure global mobile sizes are respected */
+@media (max-width: 768px) {
+  .mobile-menu .submenu li a { font-size: 1rem; }
+}
+
 
 /* Founder Image */
 .founder-image {
@@ -604,6 +729,9 @@ h2::after {
     
     .founder-image p {
         font-size: 1rem;
+    }
+    .tagline{
+        padding-left: 104px;
     }
 }
 
@@ -1400,6 +1528,48 @@ html {
     color: white;
 }
 
+/* Align multiple CTA buttons neatly */
+.cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* LinkedIn-style variant */
+/* Container for multiple CTA buttons */
+.cta-box {
+     display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;                /* Adds uniform space between buttons */
+  justify-content: center;  /* Centers them nicely */
+  margin-top: 1rem;         /* Adds a bit of breathing room from text */
+}
+
+/* Buttons already exist — make them consistent in layout */
+.cta-link {
+  display: inline-flex;     /* Helps align icons/text better */
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;              /* Adds small space if icons are added later */
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .cta-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem; /* slightly tighter for small screens */
+  }
+
+  .cta-link {
+    width: 100%;
+    max-width: 280px; /* keeps buttons from stretching too wide */
+  }
+}
+
+
 /* Benefits Grid */
 .benefits-grid {
     display: grid;
@@ -1483,6 +1653,7 @@ html {
     
     .logo {
         font-size: 1.2rem;
+        padding-left: 30px;
     }
     
     .tagline {
@@ -1667,6 +1838,7 @@ html {
     
     .tagline {
         font-size: 0.7rem;
+        padding-left: 86px;
     }
     
     /* Hero */
@@ -1966,3 +2138,139 @@ html {
         padding: 1.2rem;
     }
 }
+
+
+    #team {
+      background: linear-gradient(135deg, #8b2f2f 0%, #6b1f1f 50%, #4a1515 100%);
+      color: #fff;
+      max-width: 100%;
+      padding: 8rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #team::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="2" fill="rgba(212,175,55,0.1)"/></svg>');
+      opacity: 0.25;
+    }
+
+    #team h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #d4af37;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    #team p {
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      color: #f5f5f5;
+      line-height: 1.8;
+      font-size: 1.15rem;
+      position: relative;
+    }
+
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: rgba(255, 255, 255, 0.97);
+      color: #333;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 45px rgba(212, 175, 55, 0.25);
+    }
+
+    .team-image {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-bottom: 4px solid #d4af37;
+      transition: transform 0.4s;
+    }
+
+    .team-card:hover .team-image {
+      transform: scale(1.05);
+    }
+
+    .team-info {
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .team-name {
+      color: #6b1f1f;
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      color: #d4af37;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .team-bio {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      transition: max-height 0.4s ease;
+    }
+
+    .team-social a {
+      display: inline-block;
+      margin: 0 0.4rem;
+      color: #6b1f1f;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .team-social a:hover {
+      color: #d4af37;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #team h1 {
+        font-size: 2rem;
+      }
+      #team p {
+        font-size: 1rem;
+      }
+      .team-image {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #team {
+        padding: 6rem 1rem 3rem;
+      }
+      .team-card {
+        padding: 1rem;
+      }
+    }

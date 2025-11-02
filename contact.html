@@ -24,13 +24,21 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="founder.html">Founder's Message</a></li>
-                <li><a href="solutions.html">Solutions</a></li>
-                <li><a href="why-us.html">Why Us</a></li>
+                <!-- <li><a href="about.html">About</a></li> -->
+                <li class="has-submenu">
+                  <a href="">About Us</a>
+                  <ul class="submenu">
+                    <li><a href="about.html">Who Are We</a></li>
+                    <li><a href="why-us.html">Why Us</a></li>
+                    <li><a href="founder.html">Founder's Message</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                  </ul>
+                </li>
+                <!-- <li><a href="founder.html">Founder's Message</a></li> -->
+                <li><a href="solutions.html">Services</a></li>
+                <!-- <li><a href="why-us.html">Why Us</a></li> -->
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-
             <div class="mobile-menu-toggle">
                 <span></span>
                 <span></span>
@@ -40,16 +48,33 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="founder.html">Founder's Message</a></li>
-            <li><a href="solutions.html">Solutions</a></li>
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+
+        <!-- ABOUT WITH MOBILE TOGGLE -->
+        <li class="has-submenu mobile-only">
+          <div class="mobile-link-row">
+            <a href="">About</a>
+            <!-- toggle button shown only on mobile (accessible) -->
+            <button class="submenu-toggle" aria-expanded="false" aria-label="Toggle About submenu">+</button>
+          </div>
+          <ul class="submenu">
+            <li><a href="about.html">Who Are We</a></li>
             <li><a href="why-us.html">Why Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
+            <li><a href="founder.html">Founder's Message</a></li>
+            <li><a href="team.html">Our Team</a></li>
+          </ul>
+        </li>
+
+        <!-- <li><a href="founder.html">Founder's Message</a></li> -->
+        <li><a href="solutions.html">Services</a></li>
+        <!-- <li><a href="why-us.html">Why Us</a></li> -->
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div>
+
 
     <!-- Contact Hero Section -->
     <section class="contact-hero">
@@ -172,10 +197,21 @@
                 </div>
 
                 <div class="cta-box">
-                    <h4>Ready to Start?</h4>
-                    <p>Schedule a free consultation to discuss your digital transformation journey.</p>
-                    <a href="mailto:contact@techshastrarth.com" class="cta-link">Book a Consultation →</a>
-                </div>
+              <!-- LinkedIn Icon Header -->
+              <div class="cta-icon">
+              <a href="https://www.linkedin.com/company/techshastrarth" target="_blank" aria-label="TechShastrarth on LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#d4af37" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.047c.476-.9 1.637-1.852 3.369-1.852 3.6 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.065 2.065 0 01-2.062-2.068A2.067 2.067 0 015.337 3.3a2.066 2.066 0 012.062 2.065 2.066 2.066 0 01-2.062 2.068zM6.897 20.452H3.776V9h3.121v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="cta-links">
+              <a href="https://www.linkedin.com/company/techshastrarth/" target="_blank" class="cta-link linkedin-btn">TechShastrarth</a>
+              <!-- <a href="https://www.linkedin.com/in/amitsshah82/" target="_blank" class="cta-link linkedin-btn">Amit Shah</a> -->
+            </div>
+
+
             </div>
         </div>
     </section>

@@ -54,8 +54,46 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// Mobile submenu toggle behavior
+document.addEventListener('DOMContentLoaded', function () {
+  // find all mobile submenu toggle buttons
+  const toggles = document.querySelectorAll('.mobile-menu .submenu-toggle');
+
+  toggles.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const li = btn.closest('.has-submenu');
+      const submenu = li.querySelector('.submenu');
+
+      // toggle active state
+      li.classList.toggle('active');
+
+      const expanded = li.classList.contains('active');
+
+      // show/hide submenu
+      if (submenu) {
+        submenu.style.display = expanded ? 'block' : 'none';
+      }
+
+      // update accessible label and button symbol
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      btn.textContent = expanded ? '−' : '+';
+    });
+  });
+
+  // Ensure submenu links navigate normally when tapped (they do by default),
+  // and clicking the "About" text still navigates (we only toggled via the button).
+});
 
 
+// Mobile submenu toggle
+document.querySelectorAll('.mobile-menu .has-submenu > a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const parent = link.parentElement;
+    parent.classList.toggle('active');
+  });
+});
 
 
 // Mobile Menu Toggle - Enhanced
@@ -167,3 +205,7 @@ document.querySelectorAll('.acc-btn').forEach(btn=>{
 });
 
 
+function toggleBio(card) {
+    const bio = card.querySelector('.team-bio');
+    bio.classList.toggle('show-bio');
+}
