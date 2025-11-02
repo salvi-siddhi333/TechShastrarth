@@ -209,3 +209,13 @@ function toggleBio(card) {
     const bio = card.querySelector('.team-bio');
     bio.classList.toggle('show-bio');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const aboutLink = document.querySelector('.about-link');
+  const submenuParent = aboutLink.parentElement;
+
+  aboutLink.addEventListener('click', (e) => {
+    e.preventDefault(); // prevent default link behavior
+    submenuParent.classList.toggle('active'); // toggle submenu visibility
+  });
+});

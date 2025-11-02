@@ -593,8 +593,15 @@ h2::after {
 }
 
 /* Show submenu on hover (desktop) */
-.has-submenu:hover > .submenu {
+/*.has-submenu:hover > .submenu {
   display: block;
+}*/
+.submenu {
+  display: none; /* hide by default */
+}
+
+.has-submenu.active > .submenu {
+  display: block; /* show when active */
 }
 
 /* --- Mobile submenu improvements --- */
