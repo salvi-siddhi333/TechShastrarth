@@ -21,24 +21,7 @@ if (navbar) {
     });
 }
 
-// //Navbar current page effect 
-// document.addEventListener("DOMContentLoaded", () => {
-//   // Get current page name (e.g., 'about.html')
-//   const currentPage = window.location.pathname.split("/").pop();
-
-//   // Select all navigation links
-//   const navLinks = document.querySelectorAll("nav a");
-
-//   // Loop through each link
-//   navLinks.forEach(link => {
-//     // If the href matches current page, add the 'active' class
-//     if (link.getAttribute("href") === currentPage) {
-//       link.classList.add("active");
-//     }
-//   });
-// });
-
-
+// Navbar current page effect
 document.addEventListener("DOMContentLoaded", () => {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
@@ -52,49 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-// Mobile submenu toggle behavior
-document.addEventListener('DOMContentLoaded', function () {
-  // find all mobile submenu toggle buttons
-  const toggles = document.querySelectorAll('.mobile-menu .submenu-toggle');
-
-  toggles.forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const li = btn.closest('.has-submenu');
-      const submenu = li.querySelector('.submenu');
-
-      // toggle active state
-      li.classList.toggle('active');
-
-      const expanded = li.classList.contains('active');
-
-      // show/hide submenu
-      if (submenu) {
-        submenu.style.display = expanded ? 'block' : 'none';
-      }
-
-      // update accessible label and button symbol
-      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      btn.textContent = expanded ? '−' : '+';
-    });
-  });
-
-  // Ensure submenu links navigate normally when tapped (they do by default),
-  // and clicking the "About" text still navigates (we only toggled via the button).
-});
-
-
-// Mobile submenu toggle
-document.querySelectorAll('.mobile-menu .has-submenu > a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const parent = link.parentElement;
-    parent.classList.toggle('active');
-  });
-});
-
 
 // Mobile Menu Toggle - Enhanced
 document.addEventListener('DOMContentLoaded', function() {
@@ -117,10 +57,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Close menu when clicking a link
+        // Close menu when clicking a link (but NOT for submenu parent)
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
+                // Don't close menu if this is the "About Us" parent link
+                if (link.classList.contains('about-link')) {
+                    return; // Let the submenu toggle handler deal with it
+                }
+                
+                // Close menu for all other links
                 mobileMenuToggle.classList.remove('active');
                 mobileMenu.classList.remove('active');
                 body.style.overflow = '';
@@ -147,6 +93,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+
+// Mobile submenu toggle for "About Us"
+document.addEventListener('DOMContentLoaded', () => {
+  // Handle mobile menu submenu
+  const mobileAboutLink = document.querySelector('.mobile-menu .about-link');
+  if (mobileAboutLink) {
+    const mobileSubmenuParent = mobileAboutLink.closest('.has-submenu');
+    
+    mobileAboutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mobileSubmenuParent.classList.toggle('active');
+    });
+  }
+
+  // Handle desktop menu submenu
+  const desktopAboutLink = document.querySelector('.nav-links .about-link');
+  if (desktopAboutLink) {
+    const desktopSubmenuParent = desktopAboutLink.closest('.has-submenu');
+    
+    desktopAboutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      desktopSubmenuParent.classList.toggle('active');
+    });
+
+    // Close submenu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!desktopSubmenuParent.contains(e.target)) {
+        desktopSubmenuParent.classList.remove('active');
+      }
+    });
+  }
 });
 
 // Smooth scroll for anchor links
@@ -191,12 +171,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-document.querySelectorAll('.acc-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
+// Accordion functionality
+document.querySelectorAll('.acc-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
     const expanded = btn.getAttribute('aria-expanded') === 'true';
-    // If you want only one open at a time, close others:
-    document.querySelectorAll('.acc-btn').forEach(b=>{ b.setAttribute('aria-expanded','false'); b.nextElementSibling.hidden = true; });
+    // Close all accordions
+    document.querySelectorAll('.acc-btn').forEach(b => { 
+      b.setAttribute('aria-expanded','false'); 
+      b.nextElementSibling.hidden = true; 
+    });
+    // Open clicked accordion if it was closed
     if(!expanded){
       btn.setAttribute('aria-expanded','true');
       btn.nextElementSibling.hidden = false;
@@ -204,18 +188,8 @@ document.querySelectorAll('.acc-btn').forEach(btn=>{
   });
 });
 
-
+// Team bio toggle
 function toggleBio(card) {
     const bio = card.querySelector('.team-bio');
     bio.classList.toggle('show-bio');
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  const aboutLink = document.querySelector('.about-link');
-  const submenuParent = aboutLink.parentElement;
-
-  aboutLink.addEventListener('click', (e) => {
-    e.preventDefault(); // prevent default link behavior
-    submenuParent.classList.toggle('active'); // toggle submenu visibility
-  });
-});
