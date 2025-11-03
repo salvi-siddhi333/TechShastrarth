@@ -578,6 +578,12 @@ h2::after {
   transition: all 0.25s ease;
 }
 
+.has-submenu:hover {
+    color: #fff;
+    border-bottom: 3px solid #E0B240;
+    font-weight: 600;
+  }
+
 /* Mobile submenu: stack inside parent */
 @media (max-width: 768px) {
   .submenu {
