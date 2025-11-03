@@ -107,6 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       mobileSubmenuParent.classList.toggle('active');
     });
+    
+    // Close mobile submenu when clicking any submenu item
+    const mobileSubmenuLinks = mobileSubmenuParent.querySelectorAll('.submenu a');
+    mobileSubmenuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileSubmenuParent.classList.remove('active');
+      });
+    });
   }
 
   // Handle desktop menu submenu
@@ -118,6 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       e.stopPropagation();
       desktopSubmenuParent.classList.toggle('active');
+    });
+
+    // Close desktop submenu when clicking any submenu item
+    const desktopSubmenuLinks = desktopSubmenuParent.querySelectorAll('.submenu a');
+    desktopSubmenuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+        desktopSubmenuParent.classList.remove('active');
+      });
     });
 
     // Close submenu when clicking outside
