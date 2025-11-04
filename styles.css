@@ -242,6 +242,10 @@ nav.scrolled {
     animation: float 20s linear infinite;
 }
 
+.hero .hero-content p{
+    color: #d4af37;
+}
+
 @keyframes float {
     0% { transform: translate(0, 0); }
     100% { transform: translate(100px, 100px); }
@@ -2207,6 +2211,7 @@ html {
     }
 
     .team-card {
+
       background: rgba(255, 255, 255, 0.97);
       color: #333;
       border-radius: 12px;
@@ -2214,6 +2219,10 @@ html {
       overflow: hidden;
       transition: all 0.4s ease;
       position: relative;
+       min-height: 350px;      /* ensures all cards have at least this height */
+  display: flex;          /* allows content alignment */
+  flex-direction: column; /* stack content vertically */
+
     }
 
     .team-card:hover {
@@ -2222,12 +2231,18 @@ html {
     }
 
     .team-image {
+        padding-right: 200px;
+        padding-left: 200px;
       width: 100%;
-      height: 260px;
+      height: 300px;
       object-fit: cover;
       border-bottom: 4px solid #d4af37;
       transition: transform 0.4s;
+      border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block; 
     }
+
 
     .team-card:hover .team-image {
       transform: scale(1.05);
