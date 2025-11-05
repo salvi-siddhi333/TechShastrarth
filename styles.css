@@ -1079,7 +1079,8 @@ h2::after {
     align-items: center;
     gap: 2rem;
     width: max-content;
-    animation: scroll-left 30s linear infinite;
+    animation: 30s linear 0s infinite normal none running scroll-left;
+/*    animation: scroll-left 30s linear infinite;*/
 }
 
 .client-logo-item {
@@ -2230,18 +2231,31 @@ html {
       box-shadow: 0 15px 45px rgba(212, 175, 55, 0.25);
     }
 
-    .team-image {
-        padding-right: 100px;
-        padding-left: 100px;
+/*    .team-image {
+        padding: 0 50px;
+        padding-right: 50px;
+        padding-left: 50px;
       width: 100%;
-      height: 300px;
+      height: 350px;
       object-fit: cover;
       border-bottom: 4px solid #d4af37;
       transition: transform 0.4s;
       border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: block; 
-    }
+
+    }*/
+.team-image {
+  display: block;
+  width: 100%;
+  height: auto; /* you can make this responsive later */
+  object-fit: cover;
+  border-bottom: 4px solid #d4af37;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: transform 0.4s;
+  margin: 0 auto; /* optional centering */
+}
 
 
     .team-card:hover .team-image {
@@ -2287,25 +2301,60 @@ html {
     .team-social a:hover {
       color: #d4af37;
     }
+/* Responsive */
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      #team h1 {
-        font-size: 2rem;
-      }
-      #team p {
-        font-size: 1rem;
-      }
-      .team-image {
-        height: 220px;
-      }
-    }
+@media (max-width: 1800px) {
+  #team h1 {
+    font-size: 2rem;
+  }
+  #team p {
+    font-size: 1rem;
+  }
+  .team-image {
+    padding: 5px 150px; /* shorthand for left and right padding */
+    width: 100%;
+    height: auto;
+  }
+}
 
-    @media (max-width: 480px) {
-      #team {
-        padding: 6rem 1rem 3rem;
-      }
-      .team-card {
-        padding: 1rem;
-      }
-    }
+@media (max-width: 950px) {
+  #team h1 {
+    font-size: 2rem;
+  }
+  #team p {
+    font-size: 1rem;
+  }
+  .team-image {
+    padding: 5px 100px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  #team h1 {
+    font-size: 2rem;
+  }
+  #team p {
+    font-size: 1rem;
+  }
+  .team-image {
+    padding: 5px 50px;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #team {
+    padding: 6rem 1rem 3rem;
+  }
+  .team-card {
+    padding: 1rem;
+  }
+  .team-image {
+    padding: 5px 50px;
+    width: 100%;
+    height: 250px;
+  }
+}
